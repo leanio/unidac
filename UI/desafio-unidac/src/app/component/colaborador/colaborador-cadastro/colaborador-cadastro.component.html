@@ -1,0 +1,58 @@
+<div>
+    <div>
+        {{isNovoColaborador() ? 'CADASTRO' : 'ATUALIZAÇÃO'}} DE COLABORADOR
+    </div>
+    <form #formulario = "ngForm" autocomplete="off" (ngSubmit)="salvarColaborador()">
+        <div style="display: flex; margin-top: 50px;" >
+            <div style="margin-right: 50px;">
+                <span class="p-float-label" >
+                    <input [(ngModel)]="colaborador.nome" id="nome" name="nome" required type="text" pInputText> 
+                    <label for="nome">Nome</label>
+                </span>
+            </div>
+
+            <div>
+                <span class="p-float-label" >
+                    <input [(ngModel)]="colaborador.cpf" id="cpf" name="cpf" required type="text" pInputText> 
+                    <label for="cpf">CPF</label>
+                </span>
+            </div>
+        </div>
+        
+        <div style="display: flex; margin-top: 50px;" >
+            <div style="margin-right: 50px;"> 
+                <span class="p-float-label" >
+                    <input id="alimento" [(ngModel)]="novoAlimento.nome" name="alimento" type="text" pInputText> 
+                    <label for="alimento">Alimento</label>
+                </span>
+            </div> 
+            <div *ngIf="novoAlimento.nome?.length" style="margin-top: 5px;">
+                <button (click)="salvarAlimento()" pButton type="button" icon="pi {{isNovoAlimento() ? 'pi-plus' : 'pi-check'}}" class="p-button-rounded p-button-outlined"></button>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <p-table [value]="colaborador.alimentos" >
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>ALIMENTO</th>
+                        <th style="width: 120px;"></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-alimento>
+                    <tr>
+                        <td>{{alimento.nome.toUpperCase()}}</td>
+                        <td>
+                            <button type="button" style="margin-right: 10px;" pButton icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="selecionarAlimentoAtualizacao(alimento)"></button>
+                            <button type="button" pButton icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="removerAlimento(alimento)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <div style="margin-top: 25px;">
+            <button type="submit" [disabled] = "formulario.invalid" style="width: 200px; height: 50px; font-weight: bold; font-size: 20px;" pButton label="{{isNovoColaborador() ? 'CADASTRAR' : 'ATUALIZAR'}}" ></button>
+        </div>
+    </form>
+</div>

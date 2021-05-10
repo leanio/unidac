@@ -1,0 +1,40 @@
+<div>
+    <p-confirmPopup></p-confirmPopup>
+    <div>
+        LISTA DE COLABORADORES
+    </div>
+    
+    <div style="margin-top: 50px;"> 
+        <button routerLink="/colaboradores/cadastro" pButton type="button" style="width: 200px; height: 50px; font-weight: bold; font-size: 20px;" label="NOVO" ></button>
+    </div>
+
+    <div style="margin-top: 50px;">
+        <p-table [value]="colaboradores" [paginator]="true" [rows]="10">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>NOME</th>
+                    <th>CPF</th>
+                    <th>LANCHE</th>
+                    <th style="width: 120px;"></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-colaborador let-expanded="expanded">
+                <tr>
+                    <td>{{colaborador.nome}}</td>
+                    <td>{{colaborador.cpf}}</td>
+                    <td>
+                        <li *ngFor="let alimento of colaborador.alimentos;">
+                            {{alimento.nome}}
+                        </li>
+                    </td>
+                    <td>
+                        <button routerLink="/colaboradores/{{colaborador.id}}" style="margin-right: 10px;" pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="confirmarRemocao(colaborador.id, $event)"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+</div>
+
