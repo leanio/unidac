@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.grupowl.unidac.desafio.api.dto.response.AlimentoResponse;
 import com.grupowl.unidac.desafio.api.mapper.AlimentoResponseAssembler;
 import com.grupowl.unidac.desafio.domain.model.Alimento;
-import com.grupowl.unidac.desafio.infrastructure.repository.AlimentoRepositoryImpl;
+import com.grupowl.unidac.desafio.domain.repository.AlimentoRepository;
 
 @RestController
 @RequestMapping("/alimentos")
 public class AlimentoController {
 	
 	@Autowired
-	private AlimentoRepositoryImpl alimentoRepository;
+	private AlimentoRepository alimentoRepository;
 	
 	@Autowired
 	private AlimentoResponseAssembler alimentoResponseAssembler;

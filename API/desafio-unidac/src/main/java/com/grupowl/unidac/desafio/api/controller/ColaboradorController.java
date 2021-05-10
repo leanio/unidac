@@ -21,8 +21,8 @@ import com.grupowl.unidac.desafio.api.dto.response.ColaboradorResponse;
 import com.grupowl.unidac.desafio.api.mapper.ColaboradorCadastroRequestDissambler;
 import com.grupowl.unidac.desafio.api.mapper.ColaboradorResponseAssembler;
 import com.grupowl.unidac.desafio.domain.model.Colaborador;
+import com.grupowl.unidac.desafio.domain.repository.ColaboradorRepository;
 import com.grupowl.unidac.desafio.domain.service.CadastroColaboradorService;
-import com.grupowl.unidac.desafio.infrastructure.repository.ColaboradorRepositoryImpl;
 
 @RestController
 @RequestMapping("/colaboradores")
@@ -38,7 +38,7 @@ public class ColaboradorController {
 	private ColaboradorResponseAssembler colaboradorResponseAssembler;
 	
 	@Autowired
-	private ColaboradorRepositoryImpl colaboradorRepository;
+	private ColaboradorRepository colaboradorRepository;
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
